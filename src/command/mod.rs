@@ -10,8 +10,8 @@ pub fn is_command(s: &String) -> bool {
     let first = args[0];
 
     match first {
-        "help" | "clear" | "exit" | "ops" | "operators" | "fns" | "functions" | "vars"
-        | "consts" | "constants" | "del" | "delete" | "flags" => true,
+        "help" | "clear" | "ops" | "operators" | "fns" | "functions" | "vars" | "consts"
+        | "constants" | "del" | "delete" | "flags" => true,
         _ => false,
     }
 }
@@ -48,7 +48,7 @@ pub fn do_command(context: &mut Context, s: &String) -> FormattedText {
                 "TUI scientific calculator.\n",
                 "\n",
                 " - Use Up/Down arrows to navigate history.\n",
-                " - Use Ctrl-C or Ctrl-D to quit.\n",
+                " - Use Ctrl-C, Ctrl-D, or exit to quit.\n",
                 " - Use [c]ans[n] to reference the last result.\n",
                 " - Use [c]var = 1337[n] to define varibles.\n",
                 "\n",
@@ -56,6 +56,7 @@ pub fn do_command(context: &mut Context, s: &String) -> FormattedText {
                 "      [c]help[n]   Show this help\n",
                 "      [c]flags[n]  Show command-line options\n",
                 "      [c]clear[n]  Clear the terminal\n",
+                "	   [c]exit[n]	Exit daisy\n",
                 "      [c]quit[n]   Exit daisy\n",
                 //"      [c]units[n]  List available units\n",
                 "      [c]consts[n] List built-in constants\n",
@@ -94,8 +95,6 @@ pub fn do_command(context: &mut Context, s: &String) -> FormattedText {
         "clear" => {
             return FormattedText::new("[clear]".to_string());
         }
-
-        "exit" => exit(0),
 
         "ops" | "operators" => {
             return FormattedText::new(
